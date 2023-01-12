@@ -93,7 +93,7 @@ Unfortunately it tools us longer than expected, but finally we did manage to get
   CustomExecutor is an inner class that came to solve the main issue of the project, the casing issue that appears when trying to add the PriorityBlockingQueue to the CustomExecutor (tasks threadpool) and it lacked the Comparable interface and didn't have the ability to get the [__CustomExecutor__ (tasks threadpool)] and [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)] to work together.     
   By implementing Comparator interface and overriding the compareTo method and using the fundamentals of 'Extender Design pattern' in this situation, we extended the CustomExecutor abbilities and made them work together. 
   
-  #### Summery of Part-B
+  #### Summary of Part-B
   Working alongside with S.O.I.D design pattern, we made sure to apply single responsibility by making inner classes or separating a class into two if needed,
   open-closed principle guide us in every project's class.
   We included as well the Extender that worked flawlessly solving our problem described under TaskComparator class summary.
