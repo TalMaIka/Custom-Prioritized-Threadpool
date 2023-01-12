@@ -15,6 +15,8 @@ The part is about file making with random number of lines in each file and using
 * [Tal Malka](https://github.com/TalMaIka)    
 * [Yann Chich](https://github.com/yannchich)
 
+# About the Part-A : 
+
  ## Project Description
  
  ![Screenshot](https://iili.io/HYIuQFs.png)     
