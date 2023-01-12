@@ -1,6 +1,5 @@
-# Ex2-OOP
 
-## About the project
+## Project subject
 This is the second project under 'OOP Course', this excercise splits into two main parts,  
 ### Part - A
 The part is about file making with random number of lines in each file and using the "File making algorithm" trough three ways of action and the amount of time each action took.   
@@ -15,9 +14,7 @@ The part is about file making with random number of lines in each file and using
 * [Tal Malka](https://github.com/TalMaIka)    
 * [Yann Chich](https://github.com/yannchich)
 
-# About the Part-A : 
-
- ## Project Description
+ ## Part-A Description
  
  ![Screenshot](https://iili.io/HYIuQFs.png)     
  The image above is breakdown diagram about part A.
@@ -56,10 +53,7 @@ The main reason for these results is that a thread is able to execute in paralle
 Using JUnit testing we made sure that every method works as intended and the time stamps and calculation was right for the tasks given.   
 
 
-# About the Part-B : 
-
-
- ## Project Description
+ ## Part-B Description
     Add diagram
     The image above is breakdown diagram about part B.
     
