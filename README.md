@@ -56,8 +56,26 @@ The main reason for these results is that a thread is able to execute in paralle
 Using JUnit testing we made sure that every method works as intended and the time stamps and calculation was right for the tasks given.   
 
 
-# About the Part-A : 
+# About the Part-B : 
 
 
  ## Project Description
-
+    Add diagram
+    The image above is breakdown diagram about part B.
+    
+  ### TaskType
+    add
+  ### Task
+    add
+  ### CustomExecutor
+    add
+ 
+  ### Further project explanation
+    ##### Design Patern
+      add
+    ##### Problem in the project
+      add
+    ##### About the flexibility and performe of the code
+  
+  ### Testing
+    add.
