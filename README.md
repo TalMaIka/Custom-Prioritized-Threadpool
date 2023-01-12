@@ -4,9 +4,12 @@
 This is the second project under 'OOP Course', this excercise splits into two main parts,  
 ### Part - A
 The part is about file making with random number of lines in each file and using the "File making algorithm" trough three ways of action and the amount of time each action took.   
-   * Using 'File making algo' by basic function using the main thread.
-   * Using 'File making algo' by main thread.
-   * Using 'File making algo' by main thread.
+   * Using 'File making algo' by basic function.
+   * Using 'File making algo' by using a thread.
+   * Using 'File making algo' by using a threadpool.     
+   
+ ### Part - B
+ In this part our main target was to create something that's "missing" from java functions and it was to create a Threadpool using recyceled threads and to send tasks  into the threadpool to be executed by the're priority.  
 
 ### Authors
 * [Tal Malka](https://github.com/TalMaIka)    
@@ -14,72 +17,39 @@ The part is about file making with random number of lines in each file and using
 
  ## Project Description
  
- ![Screenshot](https://i.ibb.co/mJRbB2X/Diagram.png)     
- The image above breaks down the project by classes interfaces and methods.
+ ![Screenshot](https://iili.io/HYIuQFs.png)     
+ The image above is breakdown diagram about part A.
  
- ### ConcreteMember
- This class resembles the 'Observerable' under the 'Observer' Design Pattern, ConcreteMembers gets updates and holds a shallow copy of the same Database there 'GroupAdmin' object holds.
+ ### Ex2_1
+ This class holds 5 main methods, including: 
+ * createTextFiles(int __n__, int __seed__, int __bound__) -> __n__ - Number of files , __seed__ - lowest num of lines , __bound__ - max num of lines.
+ * getNumOfLines(String[] __fileNames__) -> Returns num of lines.
+ * getNumOfLinesThreads(String[] __fileNames__) -> Returns num of lines using a thread.
+ * getNumOfLinesThreadsPool(String[] __fileNames__) -> Returns num of lines using a threadpool.
+ * deleteFiles(String[] __filenames__) -> Delets the created files.
  
- ### GroupAdmin
- This class resembles the 'Observers' under the 'Observer' Design Pattern, GroupAdmin notifies every member that registered to the group that there was an 
- update/change been made on the 'UndoableStringBuilder' object it holds.
+ ### ThreadLines
+ This class extends Thread, to use as a thread by returning the number of lines in a file.
  
+ ### ThreadLinesCallable
+ This class extends Callable, overriding the call() function to use it as a Callable object (Thread that returns value).
  
- ### Further explanation + how to run our project.
+ ### Further project explanation
  
- As shown 'GroupAdmin' implements 'Sender' and 'ConcreteMember' implements 'Member' Interface.
- 'GroupAdmin' resembles the 'Observer' who sends the updates and 'ConcreteMember' resembles the 'Observerable' who gets updates.
- We will explain that project as an Youtube channel: 
- * 'UndoableStringBuilder' -> as Video   
- * 'GroupAdmin' -> as Channel Owner      
- * 'ConcreteMember' -> As User who subscribed to the channel.
- 
- * First we create a "Channel" named ABC.      
-   ```GroupAdmin ABC = new GroupAdmin();```
-   
- *  We'll create a "Member" named FirstUser.     
- ```ConcreteMember FirstUser = new ConcreteMember("User");```  
-   
-   
- *  Than We'll make the registration proccess to the channel.    
- ```ABC.register(FirstUser);```
-
- * The procces will make sure that every change/update made by the channel owner will get to the registered members.
-   For example we will append a string by ABC.append("First Video") (resembles to new video beeing uploaded to the channel)   
- ```ABC.append("First Video");```
-   
- * Then the method execured after every change made notifyMembers()   
-    ```for (Member m:MemberList) {m.update(USB);}```    
-    
- That will make sure that the members registered to the channel will be notified in every update made.
-
-### Time complexity
-GroupAdmin methods ->
+  We can say that the main idea here was to see the pros and cons of Thread, Threadpool and basic function abllities and consumptions. 
+  As already said we can slpit the explanation into three parts:
   ```
-  register() -> O(1)
-  unregister() -> 0(n)
-  undo() -> O(1)
-  notifyMembers() -> O(m) -> m - MemberList size.
+        long startTime = System.currentTimeMillis();     
+        int sum = getNumOfLines(namefile); / getNumOfLinesThreads(namefile) / getNumOfLinesThreadsPool(namefile)   
+        long endTime = System.currentTimeMillis();      
+        logger.info(()->"Time calculation : "+(endTime - startTime)+" ms with a total of :"+sum+" lines.");
+ ```   
+ * These are the results
+ ![Screenshot](https://iili.io/HYIOWRR.png)     
+ 
+ As we can see threads are not only in theory should preform better time wise, it actually happens and we see the power of threads working on with this project.
   
-  append(), delete(), insert() -> Are Java StringBuilder built-in method.
-  https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
-  ```
   
-  Concretemember method ->    
-  
-  ```update() -> O(1)```
-
-
 ### Testing
-Using JUnit testing we made sure that every method works as intended.   
-There are the JUnit files:
-![Screenshot](https://i.postimg.cc/vB4wGF4S/Tests.png)
+Using JUnit testing we made sure that every method works as intended and the time stamps and calculation was right for the tasks given.   
 
-## Version History
-
-* 0.2 - Utillazaion of 'UndoableStringBuilder' based on 'Observer OOP'
-    * :speech_balloon: Notifing members on changes made for the 'USB' they ase registered for.
-    
-* 0.1 - Recreation of the StringBuilder -> UndoableStringBuilder including:
-    * append(), delete(), insert(), replace(), reverse(), toString()
-    * undo() -> Main subject of 0.1
