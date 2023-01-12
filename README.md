@@ -54,21 +54,45 @@ Using JUnit testing we made sure that every method works as intended and the tim
 
 
  ## Part-B Description
-    Add diagram
-    The image above is breakdown diagram about part B.
+  ![Screenshot](https://iili.io/HYuHOV2.png) 
+  The image above is breakdown diagram about part B.
     
   ### TaskType
-    add
+  TaskType is a enum class used for classification and proirity of the tasks that should be added to "PriorityBlockingQueue" in the future.   
+  Including the methods:
+  * getPriorityValue() -> Returns the priority value of a task.
+  * getType() -> Returns the task type.
+  * validatePriority (int __priority__) -> Checks for valid priority value.
+  * setPriority(int __priority__) -> Sets priority to a task.
+  
   ### Task
-    add
+  Task class main subject is to wrap and create a Task that will be inserted to a PriorityBlockingQueue working with Threadpool.      
+  Task has three fields -> TaskType __Tp__ , Callable<T> __caltask__ , Future<T> __value__
+  Including these methods:
+  * getType() -> Returns the 'TaskType' of a Task.
+  * getPriorityNumber() -> Returns the priority number of a Task.
+  * getCaltask() -> Retrurns the Callable object.
+  * setFuture(Future __future__) -> Attaches a Future object to 'catch' the returned value that the Callable object will return.
+  
   ### CustomExecutor
-    add
+  CustomExecutor class made to act as a Threadpool for the 'Tasks' including 'TaskType' mentioned above.      
+  CustomExecutor has four fields -> PriorityBlockingQueue<Runnable> __queue__ , ThreadPoolExecutor __executor__ , int __processors__ , int __MaxPriority__    
+  Including these methods:     
+  * submit(Callable<T> __calTask__, TaskType __Tp__) -> Adds a 'Task' to the Threadpool using Callable object and TaskType.     
+  * submit(Task<T> __task__) -> Adds a 'Task' to the Threadpool using only Task object.   
+  * gracefullyTerminate() -> Will terminate the threadpool as soon as it the whole queue submited to it.
+  * getSizeQueue() -> Returns the queue size.
+  * updateMax(Task __task__) -> Updates the last sbmited Task with the highest priority.
+  * getCurrentMax() -> using updateMax(Task __task__) Will return the highest proirity task in the queue.
+  
+One of the project reqirements was to write about the difficulties in the journey of making it happen and how we managed to get troght it,     
+the main issue here was that using the CustomExecutor as a threadpool and with it PriorityBlockingQueue that will send Tasks to the threadpool by the're TaskType priority order.   
+unfortunately it tool us longer than expected but finally we did managed to get trough it by adding the inner class I'm about to present below.
+  
+  #### TaskComparator
+  CustomExecutor it's an  inner class that came to solve the main issue of the ptoject, the Casing issue that appears when trying to add the PriorityBlockingQueue to the CustomExecutor (tasks threadpool) and it lacked the Comperable interface and didn't had the abbility to get the [__CustomExecutor__ (tasks threadpool)] and [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)] to work together.     
+  by implementing Comperator interface and overriding the compareTo method and using the fundementals of 'Extender Design pattern' in this situation we extended the CustomExecutor abbilities and made them work together. 
  
-  ### Further project explanation
-    ##### Design Patern
-      add
-    ##### Problem in the project
-      add
     ##### About the flexibility and performe of the code
   
   ### Testing
