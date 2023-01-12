@@ -24,17 +24,17 @@ The part is about file making with random number of lines in each file and using
  
  ### Ex2_1
  This class holds 5 main methods, including: 
- * createTextFiles(int __n__, int __seed__, int __bound__) -> __n__ - Number of files , __seed__ - lowest num of lines , __bound__ - max num of lines.
+ * createTextFiles(int __n__, int __seed__, int __bound__) -> __n__ - Number of files , __seed__ - generate a generator of random numbers , __bound__ - limit of lines
  * getNumOfLines(String[] __fileNames__) -> Returns num of lines.
  * getNumOfLinesThreads(String[] __fileNames__) -> Returns num of lines using a thread.
  * getNumOfLinesThreadsPool(String[] __fileNames__) -> Returns num of lines using a threadpool.
- * deleteFiles(String[] __filenames__) -> Delets the created files.
+ * deleteFiles(String[] __filenames__) -> Deletes the created files.
  
  ### ThreadLines
- This class extends Thread, to use as a thread by returning the number of lines in a file.
+ This class extends Thread, overriding the run() function to use as a thread by returning the number of lines in a file.
  
  ### ThreadLinesCallable
- This class extends Callable, overriding the call() function to use it as a Callable object (Thread that returns value).
+ This class extends Callable, overriding the call() function to use it as a Callable object (Thread that returns value). it's return the number of lines in a file.We use a Future type array to save every return of the Threads.
  
  ### Further project explanation
  
@@ -50,8 +50,14 @@ The part is about file making with random number of lines in each file and using
  ![Screenshot](https://iili.io/HYIOWRR.png)     
  
  As we can see threads are not only in theory should preform better time wise, it actually happens and we see the power of threads working on with this project.
-  
+The main reason for these results is that a thread is able to execute in parallel with other threads, which means that it can use several cores of a processor to      perform tasks simultaneously.
   
 ### Testing
 Using JUnit testing we made sure that every method works as intended and the time stamps and calculation was right for the tasks given.   
+
+
+# About the Part-A : 
+
+
+ ## Project Description
 
