@@ -4,9 +4,9 @@
 This is the second project under 'OOP Course', this excercise splits into two main parts,  
 ### Part - A
 The part is about file making with random number of lines in each file and using the "File making algorithm" trough three ways of action and the amount of time each action took.   
-   * Using 'File making algo' by basic function.
-   * Using 'File making algo' by using a thread.
-   * Using 'File making algo' by using a threadpool.     
+   * Using algo to count line in a text file by basic function.
+   * Using algo to count line in a text file by using a thread.
+   * Using algo to count line in a text file by using a threadpool.     
    
  ### Part - B
  In this part our main target was to create something that's "missing" from java functions and it was to create a Threadpool using recyceled threads and to send tasks  into the threadpool to be executed by the're priority.  
