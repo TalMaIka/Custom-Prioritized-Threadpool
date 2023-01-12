@@ -75,7 +75,7 @@ Using JUnit testing we made sure that every method works as intended and the tim
   * setFuture(Future __future__) -> Attaches a Future object to 'catch' the returned value that the Callable object will return.
   
   ### CustomExecutor
-  CustomExecutor class made to act as a Thread pool for the 'Tasks' including 'TaskType' mentioned above.      
+  CustomExecutor is a singleton class that provides a way to execute tasks with different priorities. The class uses a PriorityBlockingQueue to store the tasks, and a ThreadPoolExecutor to execute them. The tasks are compared based on their priority, and the task with the highest priority is executed first.      
   CustomExecutor has four fields -> PriorityBlockingQueue<Runnable> __queue__ , ThreadPoolExecutor __executor__ , int __processors__ , int __MaxPriority__    
   Including these methods:     
   * submit(Callable<T> __calTask__, TaskType __Tp__) -> Adds a 'Task' to the Thread pool using Callable object and TaskType.     
@@ -87,15 +87,19 @@ Using JUnit testing we made sure that every method works as intended and the tim
   
 One of the project requirements was to write about the difficulties in the journey of making it happen and how we managed to get through it,     
 the main issue here was that using the CustomExecutor as a thread pool and with it PriorityBlockingQueue that will send Tasks to the thread pool by they're TaskType priority order.   
-Unfortunately it tools us longer than expected, but finally we did manage to get through it by adding the inner class I'm about to present below.
+Unfortunately it took us longer than expected to solve it, but finally we did manage to get through it by adding the inner class that I'm about to present below.
   
   #### TaskComparator (Problem solver) 
-  CustomExecutor is an inner class that came to solve the main issue of the project, the casing issue that appears when trying to add the PriorityBlockingQueue to the CustomExecutor (tasks threadpool) and it lacked the Comparable interface and didn't have the ability to get the [__CustomExecutor__ (tasks threadpool)] and [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)] to work together.     
-  By implementing Comparator interface and overriding the compareTo method and using the fundamentals of 'Extender Design pattern' in this situation, we extended the CustomExecutor abbilities and made them work together. 
+  TaskComparator is an inner class that came to solve the main issue of the project, the casing issue that appears when trying to add the PriorityBlockingQueue that implements Runnable interface and built to accept FutureTask objects.   FutureTask objects does not have the abbility to compare between two instances and here comes the main reason of the TaskComparator class making.      
+We needed to create that inner class CustomExecutor (tasks threadpool) for it to be able prioritized the Queue -> [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)]  
+  By implementing Comparator interface and overriding the compareTo method and using the fundamentals of 'Extender Design pattern' in this situation we extended the CustomExecutor abbilities and made them work together. 
   
-  #### Summary of Part-B
-  Working alongside with S.O.I.D design pattern, we made sure to apply single responsibility by making inner classes or separating a class into two if needed,
+  #### Summary of Part-B and Design patterns we fllowed along project making.
+  Working alongside with S.O.L.I.D design pattern, we made sure to apply single responsibility by making inner classes or separating a class into two if needed,
   open-closed principle guide us in every project's class.
-  We included as well the Extender that worked flawlessly solving our problem described under TaskComparator class summary.
+ * Adapter pattern, The TaskComparator class acts as an adapter between the PriorityBlockingQueue and the Task class. It adapts the comparison of Runnable objects to the comparison of the priority of Task objects.
+  * Singleton pattern, CustomExecutor class is implemented as a singleton. There is no way to create multiple instances of CustomExecutor.
+  * Factory pattern, The submit method uses the factory pattern to create the Task object.
+  Strategy pattern, The TaskComparator class represents a strategy for comparing the tasks based on their priority. The comparator can be easily replaced with a different strategy.
   ### Testing
    Using JUnit testing we made sure that every method works as intended that every tasks that has been summited was actually got into the thread pool and if should return a value that it was returning it.
