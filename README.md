@@ -89,11 +89,10 @@ One of the project reqirements was to write about the difficulties in the journe
 the main issue here was that using the CustomExecutor as a threadpool and with it PriorityBlockingQueue that will send Tasks to the threadpool by the're TaskType priority order.   
 unfortunately it tool us longer than expected but finally we did managed to get trough it by adding the inner class I'm about to present below.
   
-  #### TaskComparator
-  CustomExecutor it's an  inner class that came to solve the main issue of the ptoject, the Casing issue that appears when trying to add the PriorityBlockingQueue to the CustomExecutor (tasks threadpool) and it lacked the Comperable interface and didn't had the abbility to get the [__CustomExecutor__ (tasks threadpool)] and [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)] to work together.     
+  #### TaskComparator (Problem solver) 
+  CustomExecutor is an inner class that came to solve the main issue of the project, the casing issue that appears when trying to add the PriorityBlockingQueue to the CustomExecutor (tasks threadpool) and it lacked the Comperable interface and didn't had the abbility to get the [__CustomExecutor__ (tasks threadpool)] and [__PriorityBlockingQueue__ (Tasks queue sorted by TaskType)] to work together.     
   by implementing Comperator interface and overriding the compareTo method and using the fundementals of 'Extender Design pattern' in this situation we extended the CustomExecutor abbilities and made them work together. 
- 
-    ##### About the flexibility and performe of the code
+  
   
   ### Testing
-    add.
+   Using JUnit testing we made sure that every method works as intended that every tasks that has been sumbited was acctually got into the threadpool and if should retun a value that it was returning it.
