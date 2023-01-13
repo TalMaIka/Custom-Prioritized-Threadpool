@@ -5,9 +5,7 @@ import java.util.concurrent.*;
 
 /**
  * The CustomExecutor class is a custom implementation of an ExecutorService that uses a
- * <p>
  * PriorityBlockingQueue to hold the tasks and a ThreadPoolExecutor to execute them.
- * <p>
  * The tasks are prioritized based on their TaskType's priority value.
  *
  * @param <T> the type of the result of the task
